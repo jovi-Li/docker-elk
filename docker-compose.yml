@@ -1,4 +1,5 @@
 version: '3.2'
+
 services:
   elasticsearch:
     build:
@@ -21,20 +22,22 @@ services:
       ELASTIC_PASSWORD: changeme
     networks:
       - elk
-   fluentd:
-      build:
-        context: fluentd/
-        args:
-          ELK_VERSION: $ELK_VERSION
-      volumes:
-        - ./fluentd/conf:/fluentd/etc
-      ports:
-        - "24224:24224"
-        - "24224:24224/udp"
-      networks:
-        - elk
-      depends_on:
-        - elasticsearch
+
+  fluentd:
+    build:
+      context: fluentd/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - ./fluentd/config:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
   kibana:
     build:
       context: kibana/
