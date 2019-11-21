@@ -22,31 +22,6 @@ services:
       ELASTIC_PASSWORD: changeme
     networks:
       - elk
-
-  # logstash:
-  #   build:
-  #     context: logstash/
-  #     args:
-  #       ELK_VERSION: $ELK_VERSION
-  #   volumes:
-  #     - type: bind
-  #       source: ./logstash/config/logstash.yml
-  #       target: /usr/share/logstash/config/logstash.yml
-  #       read_only: true
-  #     - type: bind
-  #       source: ./logstash/pipeline
-  #       target: /usr/share/logstash/pipeline
-  #       read_only: true
-  #   ports:
-  #     - "5000:5000"
-  #     - "9600:9600"
-  #   environment:
-  #     LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-  #   networks:
-  #     - elk
-  #   depends_on:
-  #     - elasticsearch
-
  fluentd:
     build:
       context: fluentd/
@@ -61,7 +36,6 @@ services:
       - elk
     depends_on:
       - elasticsearch
-
   kibana:
     build:
       context: kibana/
