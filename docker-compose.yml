@@ -29,7 +29,7 @@ services:
       args:
         ELK_VERSION: $ELK_VERSION
     volumes:
-      - ./fluentd/config:/fluentd/etc
+      - ./fluentd/conf:/fluentd/etc
     ports:
       - "24224:24224"
       - "24224:24224/udp"
