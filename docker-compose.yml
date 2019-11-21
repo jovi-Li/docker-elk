@@ -58,8 +58,8 @@ services:
     image: httpd
     ports:
       - "80:80"
-    links:
-      - fluentd
+    networks:
+      - elk
     logging:
       driver: "fluentd"
       options:
