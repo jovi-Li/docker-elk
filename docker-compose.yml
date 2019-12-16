@@ -54,17 +54,7 @@ services:
       - elk
     depends_on:
       - elasticsearch
-  web:
-    image: httpd
-    ports:
-      - "80:80"
-    networks:
-      - elk
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: 3.210.180.22:24224
-        tag: httpd.access
+
 networks:
   elk:
     driver: bridge
